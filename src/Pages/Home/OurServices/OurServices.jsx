@@ -6,8 +6,8 @@ const OurServices = () => {
     return (
         <div>
             <div className="divider text-2xl font-bold">Services</div> 
-            <div className="border-8 rounded-xl p-5">
-            <div className="flex gap-5">
+            <div className="lg:border-8 rounded-xl p-5">
+            <div className="md:flex space-y-5 gap-5">
                 <div className="space-y-3">
                     <p className="text-6xl "><IoPersonOutline></IoPersonOutline></p>
                     <h2 className="text-2xl font-semibold">Employee Profiles:</h2>

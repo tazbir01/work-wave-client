@@ -33,7 +33,7 @@ const Testimonial = () => {
                                 <p className='text-2xl'><FaQuoteLeft></FaQuoteLeft></p>
                                 <p className='text-xl'>{review.quote}</p>
                                 <div className='flex justify-end'><p className='text-2xl'><FaQuoteRight></FaQuoteRight></p></div>
-                                <p className='text-2xl font-bold border-t-2'>{review.author}</p>
+                                <p className='text-2xl font-bold border-t-2 inline-block'>{review.author}</p>
                             </div>
                         </SwiperSlide>)
                     }
