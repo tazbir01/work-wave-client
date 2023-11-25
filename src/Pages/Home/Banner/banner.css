@@ -1,0 +1,17 @@
+.banner1-bg{
+    background-image: url('../../../assets/home/banner1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner2-bg{
+    background-image: url('../../../assets/home/banner2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner3-bg{
+    background-image: url('../../../assets/home/banner3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
