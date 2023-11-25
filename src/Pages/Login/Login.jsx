@@ -1,8 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useForm} from "react-hook-form"
 
 const Login = () => {
+    const { register, handleSubmit } = useForm()
+    const onSubmit = (data) => {
+        console.log(data)
+    }
     return (
         <div className="hero min-h-screen bg-base-300">
             <Helmet>
@@ -14,18 +19,18 @@ const Login = () => {
                     <h1 className="md:text-4xl hidden lg:block lg:text-5xl font-bold">Login now!</h1>
                 </div>
                 <div className="card w-full border-black md:border-2 ">
-                    <form className="card-body">
+                    <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" className="input input-bordered" required />
+                            <input type="email" placeholder="email" {...register("email")} className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" placeholder="password" {...register("password")} className="input input-bordered" required />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
