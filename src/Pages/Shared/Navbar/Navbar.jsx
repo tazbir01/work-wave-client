@@ -1,20 +1,24 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import logo from "../../../../src/assets/home/logo.png"
+import { IoMdPerson } from "react-icons/io";
+import { useState } from "react";
 
 const Navbar = () => {
     const { user, logout } = useAuth()
+    const [showItem, setShowItem] = useState(false)
+    const handleButton = () => {
+        setShowItem(!showItem)
+    }
 
     const handleLogout = () => {
         logout()
     }
     const links = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/register'>Register</Link></li>
-
         {
-            user ? <button onClick={handleLogout}>Logout</button>
-                : <li><Link to='/login'>Login</Link></li>
+            user ? <></>
+                : <li><Link to='/register'>Register</Link></li>
         }
     </>
     return (
@@ -38,8 +42,27 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
+            <div className="navbar-end md: mr-10">
+                {
+                    user ? <div onClick={handleButton} className="avatar">
+                        <div className="w-12 flex items-center justify-center rounded-full  ring ring-black ring-offset-base-100">
+                            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        </div>
+                        {
+                            showItem && <div className="absolute top-10 text-black bg-white rounded-lg">
+                                <button onClick={handleLogout} className="btn btn-ghost">Logout</button>
+                            </div>
+                        }
+                    </div>
+                        : <div onClick={handleButton}>
+                            <p><IoMdPerson className="text-4xl"></IoMdPerson></p>
+                            {
+                                showItem && <div className="absolute flex items-center justify-center w-20 h-20 top-12 text-black bg-white rounded-lg">
+                                    <Link to="/login">Login</Link>
+                                </div>
+                            }
+                        </div>
+                }
             </div>
         </div>
     );

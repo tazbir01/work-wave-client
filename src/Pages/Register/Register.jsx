@@ -3,17 +3,40 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { createUser } = useAuth()
+    const { createUser, updateUserProfile } = useAuth()
+    // const axiosPublic = useAxiosPublic()
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async(data) => {
         console.log(data)
+        // const imageFile = {photo: data.photo[0]}
+        // const res = await axiosPublic.post(image_hosting_api, imageFile,{
+        //     headers:{
+        //         'content-type': 'multipart/form-data'
+        //     }
+        // })
+        // console.log(res.data)
+
         createUser(data.email, data.password)
             .then(res => {
                 console.log(res.user)
+                // updateUserProfile(data.name, data.photo)
+               updateUserProfile(data.name, data.photo)
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Register successfull",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
             })
             .catch(err => {
                 console.log(err.message)
@@ -93,7 +116,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Upload Your Photo*</span>
                             </label>
-                            <input type="file" {...register("photo", {required: true})} className="file-input w-full max-w-xs" />
+                            <input type="file" {...register("photo", )} className="file-input w-full max-w-xs" />
                         </div>
                         
 
