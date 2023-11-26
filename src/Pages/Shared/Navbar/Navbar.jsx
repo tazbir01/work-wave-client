@@ -16,6 +16,7 @@ const Navbar = () => {
     }
     const links = <>
         <li><Link to='/'>Home</Link></li>
+        <li><Link to='/contactus'>Contact Us</Link></li>
         {
             user ? <></>
                 : <li><Link to='/register'>Register</Link></li>

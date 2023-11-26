@@ -5,6 +5,7 @@ import Main from "../Layouts/Main";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import ContactUs from "../Pages/ContactUs/ContactUs";
   
 
   export const router = createBrowserRouter([
@@ -15,6 +16,10 @@ import Register from "../Pages/Register/Register";
         {
           path: '/',
           element: <Home></Home>
+        },
+        {
+          path: '/contactus',
+          element: <ContactUs></ContactUs>
         }
       ]
     },
