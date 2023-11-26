@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-    const { register, handleSubmit, formState: { errors }, } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const { createUser } = useAuth()
 
 
@@ -30,49 +30,58 @@ const Register = () => {
                 <div className="text-center lg:text-left">
                     <h1 className="md:text-4xl hidden lg:block lg:text-5xl font-bold">Register now!</h1>
                 </div>
+                <p className="text-red-600">Fields marked * are required</p>
                 <div className="card w-full  ">
                     <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
 
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text">Email*</span>
                             </label>
                             <input type="email" placeholder="email" {...register("email")} className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Password</span>
+                                <span className="label-text">Password*</span>
                             </label>
-                            <input type="password" placeholder="password" {...register("password")} className="input input-bordered" required />
-
+                            <input type="password" placeholder="password" {...register("password",{
+                                minLength: 6,
+                                pattern: /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-])/
+                            })} className="input input-bordered" required />
+                            {errors.password?.type === "minLength" && (
+                                <p className='text-red-600'>password must be 6 character.</p>
+                            )}
+                            {errors.password?.type === "pattern" && (
+                                <p className='text-red-600'>add a capital letter and speacial character</p>
+                            )}
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Full Name</span>
+                                <span className="label-text">Full Name*</span>
                             </label>
                             <input type="text" placeholder="full name" {...register("name")} className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Designation</span>
+                                <span className="label-text">Designation*</span>
                             </label>
                             <input type="text" placeholder="designation" {...register("designation")} className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Bank Account No.</span>
+                                <span className="label-text">Bank Account No.*</span>
                             </label>
                             <input type="number" placeholder="bank account no." {...register("bank_acount")} className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Salary</span>
+                                <span className="label-text">Salary*</span>
                             </label>
                             <input type="number" placeholder="salary" {...register("salary")} className="input input-bordered" required />
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Role</span>
+                                <span className="label-text">Role*</span>
                             </label>
                             <select defaultValue="default" {...register("role", { required: true })} className="select select-bordered w-full">
                                 <option disabled value="default">Select a role</option>
@@ -82,9 +91,9 @@ const Register = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Upload Your Photo</span>
+                                <span className="label-text">Upload Your Photo*</span>
                             </label>
-                            <input type="file" {...register("photo")} className="file-input w-full max-w-xs" />
+                            <input type="file" {...register("photo", {required: true})} className="file-input w-full max-w-xs" />
                         </div>
                         
 

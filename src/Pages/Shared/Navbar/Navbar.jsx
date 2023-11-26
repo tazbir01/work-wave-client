@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+    const {user, logout} = useAuth()
+
+    const handleLogout = ()=>{
+        logout()
+    }
     const links = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/register'>Register</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        
+        {
+            user ? <button onClick={handleLogout}>Logout</button>
+            :<li><Link to='/login'>Login</Link></li>
+        }
     </>
     return (
         <div className="navbar bg-black text-white fixed z-10 bg-opacity-60">

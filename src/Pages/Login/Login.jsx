@@ -2,12 +2,22 @@ import { Helmet } from "react-helmet-async";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useForm} from "react-hook-form"
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors }, setError} = useForm()
+    const {userLogin} = useAuth()
+
     const onSubmit = (data) => {
         console.log(data)
+        userLogin(data.email, data.password)
+        .then(res => console.log(res.user))
+        .catch(err => {
+            console.log(err.message)
+            setError("password", {type: "manual", message: err.message})
+        })
     }
+
     return (
         <div className="hero min-h-screen bg-base-300">
             <Helmet>
@@ -34,6 +44,9 @@ const Login = () => {
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
+                            {errors.password && (
+                                <p className='text-red-600'>{errors.password.message}</p>
+                            )}
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
