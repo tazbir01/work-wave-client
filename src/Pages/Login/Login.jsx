@@ -3,6 +3,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm} from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, setError} = useForm()
@@ -15,7 +16,15 @@ const Login = () => {
         userLogin(data.email, data.password)
         .then(res => {
             console.log(res.user)
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Login Success.",
+                showConfirmButton: false,
+                timer: 1500
+              });
             navigate(location?.state ? location.state : "/")
+
         })
         .catch(err => {
             // console.log(err.message)

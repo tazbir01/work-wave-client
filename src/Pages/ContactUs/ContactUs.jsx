@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet-async";
 import { FaEnvelope } from "react-icons/fa";
 
 const ContactUs = () => {
     return (
         <div>
+            <Helmet>
+                <title>Work Wove | Contact Us</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col md:flex-row mt-16">
                     <div className="text-center lg:text-left max-w-2xl">

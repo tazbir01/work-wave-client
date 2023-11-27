@@ -5,14 +5,16 @@ import { useForm } from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const Register = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const { createUser, updateUserProfile } = useAuth()
     const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
 
 
     const onSubmit = async (data) => {
@@ -29,13 +31,33 @@ const Register = () => {
                 console.log(result.user)
                 // updateUserProfile(data.name, data.photo)
                 updateUserProfile(data.name, res.data.data.display_url)
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Register successfull",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                    .then(() => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            designation: data.designation,
+                            bank_acount: data.bank_acount,
+                            salary: parseFloat(data.salary),
+                            role: data.role,
+                            image: res.data.data.display_url
+                        }
+
+                        axiosSecure.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res.data)
+                                if (res.data.insertedId > 0) {
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "Register successfull",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    reset()
+                                }
+                            })
+                    })
+
             })
             .catch(err => {
                 console.log(err.message)
