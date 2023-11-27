@@ -1,5 +1,6 @@
-import Table from "../../../Components/Table/Table";
 import { useState, useEffect } from "react"
+import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { RxCross2 } from "react-icons/rx";
 
 const EmployeeList = () => {
 
@@ -24,6 +25,7 @@ const EmployeeList = () => {
             <th>Designation</th>
             <th>Bank Accout</th>
             <th>Salary</th>
+            <th>Verified</th>
             <th></th>
             <th></th>
           </tr>
@@ -37,11 +39,14 @@ const EmployeeList = () => {
               <td>{user.designation}</td>
               <td>{user.bank_account}</td>
               <td>{user.salary}</td>
-              <td>Pay</td>
-              <td>details</td>
+              <td>
+              <p className="text-green-600 text-2xl"><RiVerifiedBadgeFill></RiVerifiedBadgeFill></p>
+              <p className="text-red-500 text-xl"><RxCross2></RxCross2></p>
+              </td>
+              <td><button className="btn text-green-600">Pay</button></td>
+              <td><button className="btn">details</button></td>
             </tr>)
           }
-          
         </tbody>
       </table>
     </div>

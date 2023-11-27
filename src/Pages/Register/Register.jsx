@@ -12,31 +12,32 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { createUser, updateUserProfile } = useAuth()
-    // const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic()
 
 
-    const onSubmit = async(data) => {
+    const onSubmit = async (data) => {
         console.log(data)
-        // const imageFile = {photo: data.photo[0]}
-        // const res = await axiosPublic.post(image_hosting_api, imageFile,{
-        //     headers:{
-        //         'content-type': 'multipart/form-data'
-        //     }
-        // })
-        // console.log(res.data)
+        const imageFile = { image: data.image[0] }
+        console.log(imageFile)
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+        console.log(res.data)
 
         createUser(data.email, data.password)
-            .then(res => {
-                console.log(res.user)
+            .then(result => {
+                console.log(result.user)
                 // updateUserProfile(data.name, data.photo)
-               updateUserProfile(data.name, data.photo)
+                updateUserProfile(data.name, res.data.data.display_url)
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
                     title: "Register successfull",
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
             })
             .catch(err => {
                 console.log(err.message)
@@ -67,7 +68,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password*</span>
                             </label>
-                            <input type="password" placeholder="password" {...register("password",{
+                            <input type="password" placeholder="password" {...register("password", {
                                 minLength: 6,
                                 pattern: /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-])/
                             })} className="input input-bordered" required />
@@ -116,9 +117,9 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Upload Your Photo*</span>
                             </label>
-                            <input type="file" {...register("photo", )} className="file-input w-full max-w-xs" />
+                            <input type="file" {...register("image",)} className="file-input w-full max-w-xs" />
                         </div>
-                        
+
 
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>

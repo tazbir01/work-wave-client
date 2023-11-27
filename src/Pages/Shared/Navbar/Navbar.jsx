@@ -48,7 +48,7 @@ const Navbar = () => {
                 {
                     user ? <div onClick={handleButton} className="avatar">
                         <div className="w-12 flex items-center justify-center rounded-full  ring ring-black ring-offset-base-100">
-                            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <img src={user.photoURL} />
                         </div>
                         {
                             showItem && <div className="absolute top-10 text-black bg-white rounded-lg">
