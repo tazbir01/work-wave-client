@@ -8,6 +8,7 @@ import Register from "../Pages/Register/Register";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import Dashboard from "../Layouts/Dashboard";
 import EmployeeList from "../Pages/Dashboard/EmployeeList/EmployeeList";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "employee-list",

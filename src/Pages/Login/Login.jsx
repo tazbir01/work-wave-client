@@ -1,19 +1,24 @@
 import { Helmet } from "react-helmet-async";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm} from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, setError} = useForm()
     const {userLogin} = useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const onSubmit = (data) => {
         console.log(data)
         userLogin(data.email, data.password)
-        .then(res => console.log(res.user))
+        .then(res => {
+            console.log(res.user)
+            navigate(location?.state ? location.state : "/")
+        })
         .catch(err => {
-            console.log(err.message)
+            // console.log(err.message)
             setError("password", {type: "manual", message: err.message})
         })
     }
