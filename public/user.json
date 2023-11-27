@@ -1,0 +1,103 @@
+[
+    {
+      "unique_id": "1",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "bank_account": "123456789",
+      "salary": 60000,
+      "photo": "https://example.com/photos/john_doe.jpg",
+      "designation": "Software Engineer",
+      "role": "employee"
+    },
+    {
+      "unique_id": "2",
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "bank_account": "987654321",
+      "salary": 70000,
+      "photo": "https://example.com/photos/jane_smith.jpg",
+      "designation": "Marketing Specialist",
+      "role": "employee"
+    },
+    {
+      "unique_id": "3",
+      "name": "Robert Johnson",
+      "email": "robert.johnson@example.com",
+      "bank_account": "456789012",
+      "salary": 80000,
+      "photo": "https://example.com/photos/robert_johnson.jpg",
+      "designation": "Financial Analyst",
+      "role": "employee"
+    },
+    {
+      "unique_id": "4",
+      "name": "Emily White",
+      "email": "emily.white@example.com",
+      "bank_account": "789012345",
+      "salary": 75000,
+      "photo": "https://example.com/photos/emily_white.jpg",
+      "designation": "UX Designer",
+      "role": "employee"
+    },
+    {
+      "unique_id": "5",
+      "name": "Michael Brown",
+      "email": "michael.brown@example.com",
+      "bank_account": "234567890",
+      "salary": 90000,
+      "photo": "https://example.com/photos/michael_brown.jpg",
+      "designation": "Project Manager",
+      "role": "employee"
+    },
+    {
+      "unique_id": "6",
+      "name": "Sarah Wilson",
+      "email": "sarah.wilson@example.com",
+      "bank_account": "890123456",
+      "salary": 65000,
+      "photo": "https://example.com/photos/sarah_wilson.jpg",
+      "designation": "HR Coordinator",
+      "role": "employee"
+    },
+    {
+      "unique_id": "7",
+      "name": "Daniel Davis",
+      "email": "daniel.davis@example.com",
+      "bank_account": "345678901",
+      "salary": 85000,
+      "photo": "https://example.com/photos/daniel_davis.jpg",
+      "designation": "Product Manager",
+      "role": "employee"
+    },
+    {
+      "unique_id": "8",
+      "name": "Olivia Miller",
+      "email": "olivia.miller@example.com",
+      "bank_account": "678901234",
+      "salary": 70000,
+      "photo": "https://example.com/photos/olivia_miller.jpg",
+      "designation": "Graphic Designer",
+      "role": "employee"
+    },
+    {
+      "unique_id": "9",
+      "name": "James Taylor",
+      "email": "james.taylor@example.com",
+      "bank_account": "012345678",
+      "salary": 95000,
+      "photo": "https://example.com/photos/james_taylor.jpg",
+      "designation": "Sales Manager",
+      "role": "employee"
+    },
+    {
+      "unique_id": "10",
+      "name": "Ava Martinez",
+      "email": "ava.martinez@example.com",
+      "bank_account": "567890123",
+      "salary": 80000,
+      "photo": "https://example.com/photos/ava_martinez.jpg",
+      "designation": "Customer Support Specialist",
+      "role": "employee"
+    }
+  ]
+  

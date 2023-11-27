@@ -8,6 +8,12 @@ const ContactUs = () => {
                     <div className="text-center lg:text-left max-w-2xl">
                         <h1 className="text-5xl font-bold">Contact Form</h1>
                         <p className="py-6">Thank you for your interest in contacting us. We value your feedback and inquiries. Please fill the form information to get in touch with us.</p>
+                        <p>General Inquiries:</p>
+                        <p>Email: <u>info@example.com</u> </p>
+                        <p>Phone: +1 (123) 456-7890</p>
+                        <br />
+                        <p>Visit Us:</p>
+                        <p>Address: 123 Main Street, Cityville, State, Zip Code</p>
                     </div>
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <form className="card-body">

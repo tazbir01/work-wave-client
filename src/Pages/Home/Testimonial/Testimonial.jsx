@@ -14,6 +14,7 @@ const Testimonial = () => {
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
+    
     return (
         <div>
             <div className="divider text-2xl font-bold">Testimonial</div> 
