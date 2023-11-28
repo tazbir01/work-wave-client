@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react"
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const EmployeeList = () => {
+  const axiosSecure = useAxiosSecure()
 
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    fetch('/user.json')
-      .then(res => res.json())
-      .then(data => setUsers(data))
-  }, [])
-
+  const {data: users = []}= useQuery({
+    queryKey: ['users'],
+    queryFn: async () =>{
+      const res = await axiosSecure.get('/users')
+      return res.data
+    }
+  })
 
   return (
     <div className="overflow-x-auto">
