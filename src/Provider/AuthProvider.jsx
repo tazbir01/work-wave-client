@@ -46,7 +46,7 @@ const AuthProvider = ({children}) => {
                     }
                 })
             }else{
-
+                localStorage.removeItem('access-token')
             }
             setLoading(false)
             // console.log('Current user:', currentUser)
@@ -54,7 +54,7 @@ const AuthProvider = ({children}) => {
         return ()=>{
             unsubscribe()
         }
-    },[])
+    },[axiosPublic])
 
     const userInfo = {
         user,
