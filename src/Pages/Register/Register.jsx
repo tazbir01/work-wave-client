@@ -36,7 +36,7 @@ const Register = () => {
                             name: data.name,
                             email: data.email,
                             designation: data.designation,
-                            bank_acount: data.bank_acount,
+                            bank_acount: data.bank_account,
                             salary: parseFloat(data.salary),
                             role: data.role,
                             image: res.data.data.display_url
