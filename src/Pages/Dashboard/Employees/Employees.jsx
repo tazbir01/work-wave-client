@@ -1,10 +1,13 @@
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import useUsers from "../../../hooks/useUsers";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Employees = () => {
-  const { users, isLoading } = useUsers()
+  const { users, isLoading, refetch } = useUsers()
+  const axiosSecure = useAxiosSecure()
   console.log(users)
+
   if (isLoading) {
     return <div className="flex justify-center mt-20">
       <span className="loading loading-dots loading-lg"></span>
@@ -12,6 +15,16 @@ const Employees = () => {
   }
   if (users) {
     console.log(users)
+  }
+
+  const handleVerify = (id)=>{
+    axiosSecure.patch(`/users/hr/${id}`)
+    .then(res=> {
+      console.log(res.data)
+      if(res.data.modifiedCount > 0){
+        refetch()
+      }
+    })
   }
 
   return (
@@ -41,8 +54,11 @@ const Employees = () => {
               <td>{user.bank_account}</td>
               <td>{user.salary}</td>
               <td>
-                <p className="text-green-600 text-2xl"><RiVerifiedBadgeFill></RiVerifiedBadgeFill></p>
-                <p className="text-red-500 text-xl"><RxCross2></RxCross2></p>
+                  {
+                    user?.verify_status === "verified" 
+                    ? <p onClick={()=>handleVerify(user._id)} className="text-green-600 text-2xl"><RiVerifiedBadgeFill></RiVerifiedBadgeFill></p> 
+                    : <p onClick={()=>handleVerify(user._id)} className="text-red-500 text-xl"><RxCross2></RxCross2></p>
+                  }
               </td>
               <td><button className="btn text-green-600">Pay</button></td>
               <td><button className="btn">details</button></td>
