@@ -5,7 +5,7 @@ const useUsers = () => {
     const axiosSecure = useAxiosSecure()
 
 
-    const {data: users} = useQuery({
+    const {data: users, isLoading} = useQuery({
         queryKey: ['users'],
         queryFn: async ()=>{
             const res = await axiosSecure.get('/users')
@@ -13,7 +13,7 @@ const useUsers = () => {
         }
     }) 
 
-    return {users}
+    return {users, isLoading}
 };
 
 export default useUsers;

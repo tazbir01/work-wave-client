@@ -26,7 +26,6 @@ const Dashboard = () => {
                     {
                         isHr && <>
                             <li><NavLink to="/">Home</NavLink></li>
-                            <li><NavLink to="/dashboard/employee-list">Employee List</NavLink></li>
                             <li><NavLink to="/dashboard/employees">Employees</NavLink></li>
                             <li><NavLink to="/dashboard/progress">Progress</NavLink></li>
                         </>

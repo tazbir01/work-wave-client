@@ -1,11 +1,21 @@
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
+import useUsers from "../../../hooks/useUsers";
 
-const Employees = ({employees}) => {
-  const employeeList = employees || {}
-    console.log(employeeList)
-    return (
-        <div className="overflow-x-auto">
+const Employees = () => {
+  const { users, isLoading } = useUsers()
+  console.log(users)
+  if (isLoading) {
+    return <div className="flex justify-center mt-20">
+      <span className="loading loading-dots loading-lg"></span>
+    </div>
+  }
+  if (users) {
+    console.log(users)
+  }
+
+  return (
+    <div className="overflow-x-auto">
       <table className="table">
         {/* head */}
         <thead>
@@ -23,7 +33,7 @@ const Employees = ({employees}) => {
         </thead>
         <tbody>
           {
-            employees.map((user, idx) => <tr key={user._id}>
+            users.map((user, idx) => <tr key={user._id}>
               <th>{idx + 1}</th>
               <td>{user.name}</td>
               <td>{user.email}</td>
@@ -41,7 +51,7 @@ const Employees = ({employees}) => {
         </tbody>
       </table>
     </div>
-    );
+  );
 };
 
 export default Employees;
