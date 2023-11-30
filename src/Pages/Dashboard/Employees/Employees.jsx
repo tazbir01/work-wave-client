@@ -1,29 +1,11 @@
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
-const EmployeeList = () => {
-  const axiosSecure = useAxiosSecure()
-  const axiosPublic = useAxiosPublic()
-
-  const { data: users = [] } = useQuery({
-    queryKey: ['users'],
-    queryFn: async () => {
-      const res = await axiosSecure.get('/users')
-      return res.data
-    }
-  })
-
-// const admin = users.filter(user => user.role === "admin")
-// const hr = users.filter(user => user.role === "hr")
-// const employee = users.filter(user => user.role === "employee")
-// // console.log(admin, hr, employee)
-
-
-  return (
-    <div className="overflow-x-auto">
+const Employees = ({employees}) => {
+  const employeeList = employees || {}
+    console.log(employeeList)
+    return (
+        <div className="overflow-x-auto">
       <table className="table">
         {/* head */}
         <thead>
@@ -41,7 +23,7 @@ const EmployeeList = () => {
         </thead>
         <tbody>
           {
-            users.map((user, idx) => <tr key={user._id}>
+            employees.map((user, idx) => <tr key={user._id}>
               <th>{idx + 1}</th>
               <td>{user.name}</td>
               <td>{user.email}</td>
@@ -59,7 +41,7 @@ const EmployeeList = () => {
         </tbody>
       </table>
     </div>
-  );
+    );
 };
 
-export default EmployeeList;
+export default Employees;

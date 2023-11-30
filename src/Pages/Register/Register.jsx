@@ -115,7 +115,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Bank Account No.*</span>
                             </label>
-                            <input type="number" placeholder="bank account no." {...register("bank_acount")} className="input input-bordered" required />
+                            <input type="number" placeholder="bank account no." {...register("bank_account")} className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -137,7 +137,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Upload Your Photo*</span>
                             </label>
-                            <input type="file" {...register("image",)} className="file-input w-full max-w-xs" />
+                            <input type="file" {...register("image",{required: true})} className="file-input w-full max-w-xs" />
                         </div>
 
 

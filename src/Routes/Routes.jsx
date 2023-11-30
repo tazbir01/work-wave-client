@@ -9,6 +9,8 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import Dashboard from "../Layouts/Dashboard";
 import EmployeeList from "../Pages/Dashboard/EmployeeList/EmployeeList";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Employees from "../Pages/Dashboard/Employees/Employees";
+import Users from "../Pages/Dashboard/Users/Users";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
       {
         path: "employee-list",
         element: <EmployeeList></EmployeeList>
+      },
+      {
+        path: "employees",
+        element: <Employees></Employees>
+      },
+      {
+        path: 'users',
+        element: <Users></Users>
       }
     ]
   },
