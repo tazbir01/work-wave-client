@@ -16,10 +16,10 @@ const EmployeeList = () => {
     }
   })
 
-const admin = users.filter(user => user.role === "admin")
-const hr = users.filter(user => user.role === "hr")
-const employee = users.filter(user => user.role === "employee")
-// console.log(admin, hr, employee)
+// const admin = users.filter(user => user.role === "admin")
+// const hr = users.filter(user => user.role === "hr")
+// const employee = users.filter(user => user.role === "employee")
+// // console.log(admin, hr, employee)
 
 
   return (
