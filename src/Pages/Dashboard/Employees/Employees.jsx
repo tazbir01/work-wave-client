@@ -2,6 +2,7 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import useUsers from "../../../hooks/useUsers";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Employees = () => {
   const { users, isLoading, refetch } = useUsers()
@@ -17,14 +18,35 @@ const Employees = () => {
     console.log(users)
   }
 
-  const handleVerify = (id)=>{
-    axiosSecure.patch(`/users/hr/${id}`)
-    .then(res=> {
-      console.log(res.data)
-      if(res.data.modifiedCount > 0){
-        refetch()
+  const handleVerify = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      // text: "",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "For make change"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        axiosSecure.patch(`/users/hr/${id}`)
+          .then(res => {
+            console.log(res.data)
+            if (res.data.modifiedCount > 0) {
+              Swal.fire({
+                title: "Done!",
+                // text: "Your file has been deleted.",
+                icon: "success"
+              });
+              refetch()
+            }
+          })
       }
-    })
+    });
+
+
+
   }
 
   return (
@@ -54,13 +76,19 @@ const Employees = () => {
               <td>{user.bank_account}</td>
               <td>{user.salary}</td>
               <td>
-                  {
-                    user?.verify_status === "verified" 
-                    ? <p onClick={()=>handleVerify(user._id)} className="text-green-600 text-2xl"><RiVerifiedBadgeFill></RiVerifiedBadgeFill></p> 
-                    : <p onClick={()=>handleVerify(user._id)} className="text-red-500 text-xl"><RxCross2></RxCross2></p>
-                  }
+                {
+                  user?.verify_status === "verified"
+                    ? <p onClick={() => handleVerify(user._id)} className="btn text-green-600 text-2xl"><RiVerifiedBadgeFill></RiVerifiedBadgeFill></p>
+                    : <p onClick={() => handleVerify(user._id)} className="btn text-red-500 text-xl"><RxCross2></RxCross2></p>
+                }
               </td>
-              <td><button className="btn text-green-600">Pay</button></td>
+              <td>
+                {
+                  user?.verify_status === "verified"
+                  ? <button className="btn text-green-600">Pay</button>
+                  : <button disabled className="btn text-green-600">Pay</button>
+                }
+              </td>
               <td><button className="btn">details</button></td>
             </tr>)
           }
