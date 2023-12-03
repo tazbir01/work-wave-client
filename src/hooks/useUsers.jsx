@@ -5,7 +5,7 @@ const useUsers = () => {
     const axiosSecure = useAxiosSecure()
 
 
-    const {data: users, isLoading, refetch} = useQuery({
+    const {data: users=[], isLoading, refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async ()=>{
             const res = await axiosSecure.get('/users')

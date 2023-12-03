@@ -12,6 +12,8 @@ import Employees from "../Pages/Dashboard/Employees/Employees";
 import Users from "../Pages/Dashboard/Users/Users";
 import EmployeeDetails from "../Pages/Dashboard/EmployeeDetails/EmployeeDetails";
 import AllEmployeeList from "../Pages/Dashboard/AllEmployeeList/AllEmployeeList";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import WorkSheet from "../Pages/Dashboard/WorkSheet/WorkSheet";
 
 
 export const router = createBrowserRouter([
@@ -43,6 +45,16 @@ export const router = createBrowserRouter([
         path: "employees",
         element: <Employees></Employees>
       },
+      // for employee
+      {
+        path: "work-sheet",
+        element: <WorkSheet></WorkSheet>
+      },
+      {
+        path:"payment-history",
+        element: <PaymentHistory></PaymentHistory>
+      }
+      ,
       {
         path: "users",
         element: <Users></Users>

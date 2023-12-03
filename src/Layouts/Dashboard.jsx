@@ -6,7 +6,6 @@ import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
     const [isAdmin] = useAdmin()
     const [isHr] = useHr()
-    const isEmployee = true
 
 
     return (
@@ -30,13 +29,12 @@ const Dashboard = () => {
                         </>
                     }
                     {
-                        isEmployee && <>
-
+                        !isAdmin && !isHr && <>
+                            <li><NavLink to="/">Home</NavLink></li>
+                            <li><NavLink to="/dashboard/work-sheet">Work Sheet</NavLink></li>
+                            <li><NavLink to="/dashboard/payment-history">Payment History</NavLink></li>
                         </>
                     }
-                    {/* <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/dashboard/employee-list">Employee List</NavLink></li>
-                    <li><NavLink to="/dashboard/progress">Progress</NavLink></li> */}
                 </ul>
             </div>
             <div className="flex-1 ">
