@@ -3,9 +3,13 @@ import useAuth from "../../../hooks/useAuth";
 import logo from "../../../../src/assets/home/logo.png"
 import { IoMdPerson } from "react-icons/io";
 import { useState } from "react";
+import useHr from "../../../hooks/useHr";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
     const { user, logout } = useAuth()
+    const [isHr]= useHr()
+    const [isAdmin] = useAdmin()
     const [showItem, setShowItem] = useState(false)
     const handleButton = () => {
         setShowItem(!showItem)
@@ -17,7 +21,13 @@ const Navbar = () => {
     const links = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
+        {
+            user && isAdmin && <li><Link to='/dashboard/all-employees'>Dashboard</Link></li>
+        }
+        {
+            user && isHr && <li><Link to='/dashboard/employees'>Dashboard</Link></li>
+        }
+        
         {
             user ? <></>
                 : <li><Link to='/register'>Register</Link></li>

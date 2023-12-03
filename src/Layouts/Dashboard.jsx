@@ -19,8 +19,7 @@ const Dashboard = () => {
                     {
                         isAdmin && <>
                             <li><NavLink to="/">Home</NavLink></li>
-                            <li><NavLink to="/dashboard/employees">Employee List</NavLink></li>
-                            <li><NavLink to="/dashboard/progress">Progress</NavLink></li>
+                            <li><NavLink to="/dashboard/all-employees">All Employe List</NavLink></li>
                         </>
                     }
                     {

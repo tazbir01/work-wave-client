@@ -13,7 +13,7 @@ const AuthProvider = ({children}) => {
     const axiosPublic = useAxiosPublic()
 
     const createUser = (email, password)=>{
-        setLoading(false)
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
@@ -24,7 +24,7 @@ const AuthProvider = ({children}) => {
     }
 
     const userLogin = (email, password) =>{
-        setLoading(false)
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -43,12 +43,14 @@ const AuthProvider = ({children}) => {
                 .then(res =>{
                     if(res.data.token){
                         localStorage.setItem('access-token', res.data.token)
+                        setLoading(false)
                     }
                 })
             }else{
                 localStorage.removeItem('access-token')
+                setLoading(false)
             }
-            setLoading(false)
+            // setLoading(false)
             // console.log('Current user:', currentUser)
         })
         return ()=>{

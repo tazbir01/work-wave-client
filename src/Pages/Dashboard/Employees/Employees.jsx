@@ -3,20 +3,22 @@ import { RxCross2 } from "react-icons/rx";
 import useUsers from "../../../hooks/useUsers";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import {useState} from "react"
+import PayModal from "../PayModal/PayModal";
 
 const Employees = () => {
   const { users, isLoading, refetch } = useUsers()
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const axiosSecure = useAxiosSecure()
-  console.log(users)
+  // console.log(users)
 
   if (isLoading) {
     return <div className="flex justify-center mt-20">
       <span className="loading loading-dots loading-lg"></span>
     </div>
   }
-  if (users) {
-    console.log(users)
-  }
+
 
   const handleVerify = (id) => {
     Swal.fire({
@@ -47,6 +49,13 @@ const Employees = () => {
 
 
 
+  }
+
+  const handleOpenModal =()=>{
+    setIsModalOpen(true)
+  }
+  const handleCloseModal =()=>{
+    setIsModalOpen(false)
   }
 
   return (
@@ -85,15 +94,18 @@ const Employees = () => {
               <td>
                 {
                   user?.verify_status === "verified"
-                  ? <button className="btn text-green-600">Pay</button>
+                  ? <button onClick={handleOpenModal} className="btn text-green-600">Pay</button>
                   : <button disabled className="btn text-green-600">Pay</button>
                 }
               </td>
-              <td><button className="btn">details</button></td>
+              <td>
+                <Link to={`/dashboard/employees/details/${user._id}`}><button className="btn">details</button></Link>
+              </td>
             </tr>)
           }
         </tbody>
       </table>
+      <PayModal isOpen={isModalOpen} closeModal={handleCloseModal}></PayModal>
     </div>
   );
 };

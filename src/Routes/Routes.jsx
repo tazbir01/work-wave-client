@@ -10,6 +10,8 @@ import Dashboard from "../Layouts/Dashboard";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Employees from "../Pages/Dashboard/Employees/Employees";
 import Users from "../Pages/Dashboard/Users/Users";
+import EmployeeDetails from "../Pages/Dashboard/EmployeeDetails/EmployeeDetails";
+import AllEmployeeList from "../Pages/Dashboard/AllEmployeeList/AllEmployeeList";
 
 
 export const router = createBrowserRouter([
@@ -31,6 +33,11 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
+      // for admin
+      {
+        path:"all-employees",
+        element: <AllEmployeeList></AllEmployeeList>
+      },
       // for HR
       {
         path: "employees",
@@ -40,6 +47,11 @@ export const router = createBrowserRouter([
         path: "users",
         element: <Users></Users>
       },
+      {
+        path: "employees/details/:id",
+        element: <EmployeeDetails></EmployeeDetails>,
+        loader: ({params})=>fetch(`http://localhost:5000/users/${params.id}`)
+      }
     ]
   },
   {
