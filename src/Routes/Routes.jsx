@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
       {
         path: "employees/details/:id",
         element: <EmployeeDetails></EmployeeDetails>,
-        loader: ({params})=>fetch(`http://localhost:5000/users/${params.id}`)
+        loader: ({params})=>fetch(`https://work-wave-server.vercel.app/users/${params.id}`)
       }
     ]
   },
