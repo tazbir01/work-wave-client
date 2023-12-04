@@ -19,7 +19,7 @@ const AllEmployeeList = () => {
       confirmButtonText: "For make change"
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/users/admin/${id}`)
+        axiosSecure.patch(`/users/admin/fire/${id}`)
           .then(res => {
             console.log(res.data)
             if (res.data.modifiedCount > 0) {
@@ -27,6 +27,31 @@ const AllEmployeeList = () => {
                 title: "Fired!",
                 // text: "Your file has been deleted.",
                 // icon: ""
+              });
+              refetch()
+            }
+          })
+      }
+    });
+  }
+
+  const handleMakeHr = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "For make change"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/admin/employeeToHr/${id}`)
+          .then(res => {
+            console.log(res.data)
+            if (res.data.modifiedCount > 0) {
+              Swal.fire({
+                // title: "Fired!",
+                icon: "success"
               });
               refetch()
             }
@@ -62,7 +87,7 @@ const AllEmployeeList = () => {
                 {user.role}
 
                 {
-                  user.role !== "hr" && <button className="btn btn-sm text-green-600">make hr</button>
+                  user.role !== "hr" && <button onClick={() => handleMakeHr(user._id)} className="btn btn-sm text-green-600">make hr</button>
                 }
               </td>
               <td>{user.verify_status}</td>
