@@ -36,7 +36,7 @@ const Register = () => {
                             name: data.name,
                             email: data.email,
                             designation: data.designation,
-                            bank_acount: data.bank_account,
+                            bank_account: data.bank_account,
                             salary: parseFloat(data.salary),
                             role: data.role,
                             image: res.data.data.display_url
@@ -130,7 +130,7 @@ const Register = () => {
                             <select defaultValue="default" {...register("role", { required: true })} className="select select-bordered w-full">
                                 <option disabled value="default">Select a role</option>
                                 <option value="hr">HR</option>
-                                <option value="employe">Employee</option>
+                                <option value="employee">Employee</option>
                             </select>
                         </div>
                         <div className="form-control">

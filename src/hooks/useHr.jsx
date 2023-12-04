@@ -6,7 +6,7 @@ const useHr = () => {
     const {user, loading} = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const {data: isHr=[] } = useQuery({
+    const {data: isHr=[], isPending: isLoading } = useQuery({
         queryKey: [user?.email, "isHr"],
         enabled: !loading,
         queryFn: async()=>{
@@ -17,7 +17,7 @@ const useHr = () => {
     })
 
 
-    return [isHr]
+    return [isHr, isLoading]
 };
 
 export default useHr;

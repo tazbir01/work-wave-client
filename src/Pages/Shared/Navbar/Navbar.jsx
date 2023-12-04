@@ -28,7 +28,7 @@ const Navbar = () => {
             user && isHr && <li><Link to='/dashboard/employees'>Dashboard</Link></li>
         }
         {
-            user?.role === "employee" && <li><Link to='/dashboard/work-sheet'>Dashboard</Link></li>
+            user && !isAdmin && !isHr && <li><Link to='/dashboard/work-sheet'>Dashboard</Link></li>
         }
         
         {
